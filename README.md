@@ -1,3 +1,3 @@
 # webdev-sp21-dog
 
-link to view only P1 doc before submission
+https://docs.google.com/document/d/1bTJYk5uzU5H_K_M4XAJS84Dz-S17RkFz5bvX4BTeNQc/edit
