@@ -15,5 +15,5 @@ const findAllDogs = () => {
 //}
 
 export default {
-    findDogsByTitle, findDogByDogID
+    findDogsByName, findAllDogs
 }
