@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Web Development 5610 - Spring 2021
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project outline: 
+https://docs.google.com/document/d/1bTJYk5uzU5H_K_M4XAJS84Dz-S17RkFz5bvX4BTeNQc/edit?fbclid=IwAR1SBnUXvFSzXowZ7AE0g4OD6G90bl0FrJK-7l0G7LzJ_6OMHTj5pOyZORs#heading=h.359eqsdjdtrf
+
 
 ## Available Scripts
 
