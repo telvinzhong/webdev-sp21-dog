@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import movieService from '../services/movies-service'
+import movieService from '../services/dog-service'
 
 const Details = () => {
     const [movie, setMovie] = useState({})

@@ -9,7 +9,7 @@ const Home = () => {
                 Search
             </Link>
             <br/>
-            <Link to="/search">
+            <Link to="/details">
                 Detail
             </Link>
         </div>

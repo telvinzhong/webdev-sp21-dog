@@ -45,8 +45,8 @@
 //
 // export default Search
 import React, {useState, useEffect} from 'react'
-// import movieService from '../services/movies-service'
-import dogService from '../services/movies-service';
+// import movieService from '../services/dog-service'
+import dogService from '../services/dog-service';
 import {Link, useParams, useHistory} from "react-router-dom";
 
 const Search = () => {
