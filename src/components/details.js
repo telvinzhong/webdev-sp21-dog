@@ -1,32 +1,33 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import movieService from '../services/dog-service'
+import dogService from '../services/dog-service'
 
 const Details = () => {
-    const [movie, setMovie] = useState({})
-    const {imdbID} = useParams()
+    const [dog, setDog] = useState([])
+    const {dogId} = useParams()
     useEffect(() => {
-        movieService.findMovieById(imdbID)
-            .then(movie => setMovie(movie))
-    })
+        dogService.findDogById(dogId)
+            .then(dog => setDog(dog))
+    },[dogId])
     return(
         <div>
-            <h1>{movie.Title}</h1>
-            <img src={movie.Poster}/>
-            <h2>Plot</h2>
+            {/* {dog[0] &&
+                <img src={dog[0].url}/>
+            } */}
+            <h2>Bread</h2>
             <p>
-                {movie.Plot}
+                {/* {movie.Plot} */}
             </p>
             <h2>Cast</h2>
             <ul className="list-group">
-                {
+                {/* {
                     movie.Actors && movie.Actors.split(",").map(actor =>
                     <li className="list-group-item">
                         {actor}
                     </li>)
-                }
+                } */}
             </ul>
-            {JSON.stringify(movie)}
+            {/* {JSON.stringify(dog)} */}
         </div>
     )
 }
