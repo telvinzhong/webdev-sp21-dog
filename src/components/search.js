@@ -95,7 +95,7 @@ const Search = () => {
                         <li className="list-group-item" key={dog.id}>
                             <Link to={`/details/${dog.id}`}>
                                 {dog.name}
-                                {dog.id}
+                                {/*{dog.id}*/}
                             </Link>
                         </li>
                     )
