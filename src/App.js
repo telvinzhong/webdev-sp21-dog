@@ -2,28 +2,37 @@ import Search from "./components/search";
 import Details from "./components/details";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/Home";
+import Login from './components/login'
+import { ChakraProvider } from "@chakra-ui/react"
 
 function App() {
   return (
-    <div className="container-fluid">
-        <BrowserRouter>
-            <Route
-                exact={true}
-                path={["/"]}>
-                <Home/>
-            </Route>
-            <Route
-                exact={true}
-                path={["/search", "/search/:title"]}>
-                <Search/>
-            </Route>
-            <Route
-                exact={true}
-                path={["/details/:dogId"]}>
-                <Details/>
-            </Route>
-        </BrowserRouter>
-    </div>
+      <ChakraProvider>
+            <div className="container-fluid">
+                <BrowserRouter>
+                    <Route
+                        exact={true}
+                        path={["/"]}>
+                        <Home/>
+                    </Route>
+                    <Route
+                        exact={true}
+                        path={["/login"]}>
+                        <Login/>
+                    </Route>
+                    <Route
+                        exact={true}
+                        path={["/search", "/search/:title"]}>
+                        <Search/>
+                    </Route>
+                    <Route
+                        exact={true}
+                        path={["/details/:dogId"]}>
+                        <Details/>
+                    </Route>
+                </BrowserRouter>
+            </div>
+      </ChakraProvider>
   );
 }
 

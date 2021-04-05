@@ -12,6 +12,10 @@ const Home = () => {
             <Link to="/details">
                 Detail
             </Link>
+            <br/>
+            <Link to="/login">
+                Login
+            </Link>
         </div>
     )
 }
