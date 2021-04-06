@@ -26,6 +26,11 @@ const findDogById = (dogId) => {
        .then(response => response.json())
 }
 
+const findImgById = (imgId) => {
+    return fetch(`https://api.thedogapi.com/v1/images/${imgId}?api_key=d78f75ba-028d-49c7-943d-8560c0a9ed6e`)
+        .then(response => response.json())
+ }
+
 export default {
-    findDogsByName, findAllDogs, findDogById
+    findDogsByName, findAllDogs, findDogById, findImgById
 }

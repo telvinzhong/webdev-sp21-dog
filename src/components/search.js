@@ -48,18 +48,34 @@ import React, {useState, useEffect} from 'react'
 // import movieService from '../services/movies-service'
 import dogService from '../services/dog-service';
 import {Link, useParams, useHistory} from "react-router-dom";
-
+import { Image } from 'react-bootstrap'
 const Search = () => {
     const {title} = useParams()
     const [searchName, setSearchName] = useState("")
     const [results, setResults] = useState([])
+    const [img, setImg] = useState([])
     const history = useHistory()
     // console.log(history)
     useEffect(() => {
         setSearchName(title)
         if(title) {
             dogService.findDogsByName(title)
-                .then(results => setResults(results))
+                .then(results => {
+                    // console.log(results)
+                    // setResults(results)
+                    // const dogs = {}
+                    const dogs = [];
+                    results.map(dog => {
+                        // dogService.findImgById(dog.reference_image_id)
+                        dogService.findImgById(dog.reference_image_id)
+                            .then(image => {
+                                dog['image'] = image
+                                console.log(dog);
+                                setResults([...results, dog])
+                            })
+                    })
+                    // setImg(arr)
+                })
             // console.log(setResults(results))
         }
     }, [title])
@@ -73,8 +89,18 @@ const Search = () => {
     // console.log("name is:", title)
     return(
         <div>
-            <h1>Search</h1>
-            <input
+            <p class="h1 text-center">Search</p>
+            <form className="d-flex justify-content-center">
+                <input onChange={(event) => {
+                    setSearchName(event.target.value)
+                    // console.log(event.target.value)
+                    // console.log('search name is:',searchName)
+                }} 
+                className="form-control me-2 w-25" placeholder="Search" aria-label="Search"
+                value={searchName}/>
+                <button onClick={() => {history.push(`/search/${searchName}`)}} className="btn btn-outline-primary">Search</button>
+            </form>
+            {/* <input
                 onChange={(event) => {
                     setSearchName(event.target.value)
                     // console.log(event.target.value)
@@ -86,21 +112,40 @@ const Search = () => {
                 onClick={() => {history.push(`/search/${searchName}`)}}
                 className="btn btn-primary btn-block">
                 Search
-            </button>
-            <ul className="list-group">
+            </button> */}
+            {/* <ul className="list-group"> */}
+            <div className="row pt-4 pl-5">
                 {
-                    // JSON.stringify(results)
                     // JSON.stringify(Search)
+                    
                     results.map(dog =>
-                        <li className="list-group-item" key={dog.id}>
-                            <Link to={`/details/${dog.id}`}>
+                        // <li className="list-group-item" key={dog.id}>
+                        <div className="">
+                            {/* <Link to={`/details/${dog.id}`}>
                                 {dog.name}
-                                {/*{dog.id}*/}
-                            </Link>
-                        </li>
+                            </Link> */}
+                            {dog.image &&
+                                <div class="col-bg-12 pl-2 pt-2">
+                                    <div className="card text-center" style={{width: '18rem'}}>
+                                    <Image className="card-img-top" src={dog.image.url? dog.image.url:"https://www.barkva.org/wp-content/uploads/2021/01/Photo-Not-Available-dog.gif"}/>
+                                        <div class="card-body">
+                                            <h5 className="card-title">
+                                                <Link style={{color: 'blue'}} to={`/details/${dog.id}`}>
+                                                    {dog.name}
+                                                </Link>
+                                            </h5>
+                                            {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+                                            {/* <a href="#" class="btn btn-primary">Click</a> */}
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                         </div>
+                        // </li>
                     )
                 }
-            </ul>
+            </div>
+            {/* </ul> */}
         </div>
     )
 }
