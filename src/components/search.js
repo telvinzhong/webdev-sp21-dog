@@ -96,7 +96,7 @@ const Search = () => {
                     // console.log(event.target.value)
                     // console.log('search name is:',searchName)
                 }} 
-                className="form-control me-2 w-25" placeholder="Search" aria-label="Search"
+                className="form-control me-2 w-50" placeholder="Search" aria-label="Search"
                 value={searchName}/>
                 <button onClick={() => {history.push(`/search/${searchName}`)}} className="btn btn-outline-primary">Search</button>
             </form>
@@ -114,20 +114,20 @@ const Search = () => {
                 Search
             </button> */}
             {/* <ul className="list-group"> */}
-            <div className="row pt-4 pl-5">
+            <div className="row pt-4 pl-4 ml-5 ml-md-0">
                 {
                     // JSON.stringify(Search)
                     
                     results.map(dog =>
                         // <li className="list-group-item" key={dog.id}>
-                        <div className="">
+                        <div>
                             {/* <Link to={`/details/${dog.id}`}>
                                 {dog.name}
                             </Link> */}
                             {dog.image &&
-                                <div class="col-bg-12 pl-2 pt-2">
+                                <div className="col-bg-12 pl-2 pt-2">
                                     <div className="card text-center" style={{width: '18rem'}}>
-                                    <Image className="card-img-top" src={dog.image.url? dog.image.url:"https://www.barkva.org/wp-content/uploads/2021/01/Photo-Not-Available-dog.gif"}/>
+                                    <Image className="card-img-top img" src={dog.image.url? dog.image.url:"https://www.barkva.org/wp-content/uploads/2021/01/Photo-Not-Available-dog.gif"}/>
                                         <div class="card-body">
                                             <h5 className="card-title">
                                                 <Link style={{color: 'blue'}} to={`/details/${dog.id}`}>
