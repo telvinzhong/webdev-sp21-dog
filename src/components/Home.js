@@ -23,6 +23,7 @@
 // export default Home
 
 import React from 'react'
+import logo from './dog-home.png';
 import {Link} from "react-router-dom";
 import { Button, Navbar, Nav, Image } from 'react-bootstrap'
 import { Picture } from 'react-responsive-picture';
@@ -44,7 +45,8 @@ const Home = () => {
             {/*    /!*</Form>*!/*/}
             {/*</Navbar>*/}
             <NavBar/>
-            <Image className="photo" src="https://image.cnbcfm.com/api/v1/image/105992231-1561667465295gettyimages-521697453.jpeg?v=1561667497&w=740&h=416"  />
+            {/*<Image className="photo" src="https://image.cnbcfm.com/api/v1/image/105992231-1561667465295gettyimages-521697453.jpeg?v=1561667497&w=740&h=416"  />*/}
+            <img className="photo" src={logo} alt="logo"/>
             {/*<Picture className="photo" src="https://image.cnbcfm.com/api/v1/image/105992231-1561667465295gettyimages-521697453.jpeg?v=1561667497&w=740&h=416"  />*/}
         </div>
 
