@@ -3,6 +3,7 @@ import Details from "./components/details";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/Home";
 import Login from './components/login'
+import SignUp from "./components/register";
 import { ChakraProvider } from "@chakra-ui/react"
 
 function App() {
@@ -19,6 +20,11 @@ function App() {
                         exact={true}
                         path={["/login"]}>
                         <Login/>
+                    </Route>
+                    <Route
+                        exact={true}
+                        path={["/register"]}>
+                        <SignUp/>
                     </Route>
                     <Route
                         exact={true}
