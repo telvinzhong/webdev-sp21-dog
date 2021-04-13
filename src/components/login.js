@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {
     Text,
     VStack,
@@ -10,9 +10,12 @@ import {
     FormLabel,
     Box,
     Stack,
-    useToast,
+    useToast, Heading,
 } from "@chakra-ui/react"
 import NavBar from "./NavBar";
+import userService from '../services/user-service';
+import {useHistory} from "react-router-dom";
+import UsernameContext from '../contexts/usernameContext';
 
 /**
  * The sign in component which allows users to sign in with their username and password
@@ -23,6 +26,7 @@ export default function SignIn() {
     const [userName, setUserName] = React.useState('');
     const [password, setPassword] = React.useState('');
     const toast = useToast();
+    const history = useHistory()
 
     const handleLogIn = async () => {
         if (!(userName && password)) {
@@ -35,6 +39,22 @@ export default function SignIn() {
             });
             return;
         }
+        try {
+            await userService.signIn(userName, password);
+            // .then((user)=>setName(user.userName))
+
+            history.push('/profile')
+        } catch (error) {
+            toast({
+                title: "Sign in failed",
+                description: "User account does not exist.",
+                status: "error",
+                duration: 3000,
+                isClosable: true
+            });
+        }
+
+
     }
 
     return (
@@ -45,20 +65,27 @@ export default function SignIn() {
                 <Box p="4" borderRadius='lg' width='lg'>
                     <FormControl mb='4rem'>
                         <FormLabel fontSize='30px'>Username</FormLabel>
-                        <Input variant="flushed" value={userName} onChange={(e) => {setUserName(e.target.value)}}/>
+                        <Input variant="flushed" value={userName} onChange={(e) => {
+                            setUserName(e.target.value)
+                        }}/>
                         <FormLabel mt='50px' fontSize='30px'>Password</FormLabel>
                         <InputGroup>
-                            <Input type={show ? "text" : "password"} variant="flushed" value={password} onChange={(e) => {setPassword(e.target.value)}}/>
+                            <Input type={show ? "text" : "password"} variant="flushed" value={password}
+                                   onChange={(e) => {
+                                       setPassword(e.target.value)
+                                   }}/>
                             <InputRightElement width="4rem" pb='10px'>
-                                <Button onClick={handleClick} size='sm'>{show ? "Hide" : "Show"}</Button></InputRightElement>
+                                <Button onClick={handleClick}
+                                        size='sm'>{show ? "Hide" : "Show"}</Button></InputRightElement>
                         </InputGroup>
                         <Stack direction="column" mt='3rem' align='center'>
-                            <Button colorScheme='teal' size='lg' width='xs' onClick={handleLogIn}>Sign in</Button>
+                            <Button colorScheme='teal' size='lg' width='xs' onClick={handleLogIn}>Sign
+                                in</Button>
+
                         </Stack>
                     </FormControl>
                 </Box>
             </VStack>
-
         </>
 
     )
