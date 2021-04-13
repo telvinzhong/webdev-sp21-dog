@@ -45,6 +45,7 @@
 //
 // export default Search
 import React, {useState, useEffect} from 'react'
+import NavBar from "./NavBar";
 // import movieService from '../services/movies-service'
 import dogService from '../services/dog-service';
 import {Link, useParams, useHistory} from "react-router-dom";
@@ -89,6 +90,7 @@ const Search = () => {
     // console.log("name is:", title)
     return(
         <div>
+            <NavBar/>
             <p class="h1 text-center">Search</p>
             <form className="d-flex justify-content-center">
                 <input onChange={(event) => {

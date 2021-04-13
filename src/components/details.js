@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import dogService from '../services/dog-service'
+import NavBar from "./NavBar";
 
 const Details = () => {
     const [dog, setDog] = useState([])
@@ -67,6 +68,8 @@ const Details = () => {
         //         </div>
         //     }
         // </div>
+        <div>
+            <NavBar/>
             <div className="card mt-5" style={{backgroundImage: `url("https://static9.depositphotos.com/1022647/1081/v/600/depositphotos_10813712-stock-illustration-background-animal-footprints.jpg")` }}>
                 <div className="row g-0">
                     <div className="col-md-4 mt-5 mr-4 mr-sm-4 mr-md-0 pl-5">
@@ -134,6 +137,7 @@ const Details = () => {
                     </div>
                 </div>
             </div>
+        </div>
     )
 }
 
