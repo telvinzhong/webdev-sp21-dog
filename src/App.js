@@ -25,14 +25,19 @@ function App() {
                     </Route>
                     <Route
                         exact={true}
-                        path={["/profile/:userId"]}>
+                        path={["/profile"]}>
                         <Profile/>
                     </Route>
-                    <Route
-                        exact={true}
-                        path={["/profile"]}>
-                        <InvalidProfile/>
-                    </Route>
+                    {/*<Route*/}
+                    {/*    exact={true}*/}
+                    {/*    path={["/profile/:userId"]}>*/}
+                    {/*    <Profile/>*/}
+                    {/*</Route>*/}
+                    {/*<Route*/}
+                    {/*    exact={true}*/}
+                    {/*    path={["/profile"]}>*/}
+                    {/*    <InvalidProfile/>*/}
+                    {/*</Route>*/}
                     <Route
                         exact={true}
                         path={["/register"]}>

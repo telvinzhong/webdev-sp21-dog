@@ -27,12 +27,14 @@ const Profile = () => {
                         <Input type="text" value="Your Username"/>
                         {/*<Input/>*/}
                     </FormControl>
+
                     <FormControl mb='1rem'>
                         <FormLabel fontSize='20px'>Password</FormLabel>
 
                         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
                     </FormControl>
+
                     <FormControl mb='1rem'>
                         <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
                         <Select value={role} onChange={(e) => setRole(e.target.value)}>
@@ -40,12 +42,84 @@ const Profile = () => {
                             <option>No</option>
                         </Select>
                     </FormControl>
-                    <Stack direction="column" spacing={7} align='center' pt='2rem'>
-                        <Button colorScheme='purple' size='lg' width='xs'>Update</Button>
-                    </Stack>
 
+                    <Stack direction="column" spacing={7} align='center' pt='2rem'>
+                        <Button colorScheme='purple' size='lg' width='xs'>Update Profile</Button>
+                    </Stack>
+                    {/*<Stack direction="column" spacing={7} align='center' pt='2rem'>*/}
+                    {/*    <Button colorScheme='purple' size='lg' width='xs'>Your commented dogs</Button>*/}
+                    {/*</Stack>*/}
                 </Box>
+                {/*{*/}
+                {/*    // editing &&*/}
+                {/*    <div>*/}
+                {/*        <i onClick={() => {*/}
+                {/*            // deleteWidget(_widget)}*/}
+                {/*        } className="fas fa-trash float-right"></i>*/}
+                {/*        <i onClick={() => {*/}
+                {/*            // updateWidget(widget)*/}
+                {/*            // setEditing(false)*/}
+                {/*            // console.log("inside update: ", widget)*/}
+
+                {/*        }} className="fas fa-check float-right"></i>*/}
+
+                {/*     */}
+                {/*        <textarea*/}
+                {/*            // onChange={(e) => setWidget({...widget, text: e.target.value})}*/}
+                {/*            // value={widget.text}*/}
+                {/*            className="form-control"></textarea>*/}
+                {/*    </div>*/}
+                {/*}*/}
+                {/*{*/}
+                {/*    // !editing &&*/}
+                {/*    <div>*/}
+                {/*        <i onClick={() => {*/}
+                {/*            // setEditing(true)*/}
+
+                {/*        }} className="fas fa-cog float-right"></i>*/}
+                {/*        <p>*/}
+                {/*            /!*{_widget.text}*!/*/}
+                {/*            This is the dog you like*/}
+                {/*        </p>*/}
+                {/*    </div>*/}
+                {/*}*/}
+
+                <div className="table-responsive">
+                    <table className="table text-nowrap">
+                        <thead>
+                        <tr>
+                            <th>Dog Name</th>
+                            <th>Comments</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Husky</td>
+                            <td><textarea>Good dog.</textarea></td>
+                            <i onClick={() => {
+                                // setEditing(true)
+                            }} className="fas fa-cog"></i>
+                        </tr>
+                        <tr>
+                            <td>Akbash Dog</td>
+                            <td><textarea>I like it!</textarea></td>
+                            <i onClick={() => {
+                                // setEditing(true)
+                            }} className="fas fa-cog"></i>
+                        </tr>
+                        <tr>
+                            <td>American Bulldog</td>
+                            <td><textarea>Tell me more.</textarea></td>
+                            <i onClick={() => {
+                                // setEditing(true)
+                            }} className="fas fa-cog"></i>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
             </VStack>
+
         </div>
 
 
