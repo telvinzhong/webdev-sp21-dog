@@ -15,7 +15,6 @@ import {
 import NavBar from "./NavBar";
 import userService from '../services/user-service';
 import {useHistory} from "react-router-dom";
-import UsernameContext from '../contexts/usernameContext';
 
 /**
  * The sign in component which allows users to sign in with their username and password

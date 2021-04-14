@@ -13,7 +13,6 @@ import {
 } from "@chakra-ui/react"
 import NavBar from "./NavBar";
 import userService from "../services/user-service"
-import usernameContext from '../contexts/usernameContext';
 
 /**
  * The sign up component which allows users to create an account, including username, password, email, gender, age and city
@@ -26,7 +25,6 @@ const SignUp = () => {
     const [invalid, setInvalid] = useState(false);
     const [role, setRole] = useState('');
     const toast = useToast();
-    const {name} = useContext(usernameContext);
 
     useEffect(() => {
         if (password !== passwordToMatch) {
