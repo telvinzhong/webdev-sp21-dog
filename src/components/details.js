@@ -137,6 +137,39 @@ const Details = () => {
                     </div>
                 </div>
             </div>
+            <div className="table-responsive">
+                <table className="table table-striped text-nowrap">
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Comment</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Bob</td>
+                        <td>Good dog.</td>
+
+                    </tr>
+                    <tr>
+                        <td>Matt</td>
+                        <td>I like it!</td>
+                    </tr>
+                    <tr>
+                        <td>Lina</td>
+                        <td>Tell me more.</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <form>
+                <div className="form-group">
+                    <label htmlFor="comment">Leave your comment</label>
+                    <input type="text" className="form-control" id = "comment" placeholder="Comment"/>
+                    <button type="submit" className="btn btn-primary btn-group-justified">submit</button>
+                </div>
+            </form>
         </div>
     )
 }
