@@ -20,6 +20,13 @@ const login = (credentials) => {
         .then(response => response.json())
 }
 
+const logout = () => {
+    return fetch(`${USER_API}/logout`, {
+        method: "POST",
+        credentials: "include"
+    }).then(response => response.json())
+}
+
 const signup = (credentials) => {
     return fetch(`${USER_API}/signup`, {
         method: "POST",
