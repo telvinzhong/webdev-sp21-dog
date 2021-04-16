@@ -17,7 +17,6 @@ const Profile = () => {
     useEffect(() => {}, [password, role])
     return(
         <div>
-
             <NavBar/>
             <VStack>
                 <Text fontSize='70px' color='purple' as='ariel'>Profile</Text>
