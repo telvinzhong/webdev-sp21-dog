@@ -39,7 +39,6 @@ const signup = (credentials) => {
         .then(response => response.json())
 }
 
-const logout = () => {}
 
 export default {
     signup, login, logout, profile
