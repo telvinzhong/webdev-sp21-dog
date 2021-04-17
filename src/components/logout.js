@@ -1,18 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {useHistory} from "react-router-dom";
 import userService from "../services/user-service";
 import NavBar from "./NavBar";
-import {
-    Box,
-    Button,
-    FormControl,
-    FormLabel,
-    Input,
-    InputGroup,
-    InputRightElement, Stack,
-    Text,
-    VStack
-} from "@chakra-ui/react";
+
 
 const Logout = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -37,11 +26,6 @@ const Logout = () => {
         <>
             <NavBar logout={logout()}/>
             <h1>You are safely logged out!</h1>
-            {/*<button*/}
-            {/*    onClick={logout}*/}
-            {/*    className="btn btn-primary">*/}
-            {/*    Logout*/}
-            {/*</button>*/}
 
         </>
 

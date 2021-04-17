@@ -15,6 +15,7 @@ import {
 const Profile = () => {
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
+    const [editing, setEditing] = useState(false)
     const [currentUser, setCurrentUser] = useState({})
     const [statusCode, setStatusCode] = useState('')
     useEffect(() => {
@@ -23,7 +24,8 @@ const Profile = () => {
                 setCurrentUser(currentUser)
             })
     }, [statusCode])
-    // console.log('currentuser in profile', currentUser.userName)
+
+    console.log('currentuser in profile:', currentUser)
     return(
         <div>
             <NavBar/>
@@ -33,67 +35,64 @@ const Profile = () => {
                     <FormControl mb='1rem'>
                         <FormLabel fontSize='20px'>Username</FormLabel>
                         <Input type="text" value={currentUser.userName}/>
-                        {/*<Input/>*/}
                     </FormControl>
+                    {
+                        !editing &&
+                            <>
+                                <FormControl mb='1rem'>
+                                    <FormLabel fontSize='20px'>Password</FormLabel>
+                                    <Input type="password" value={currentUser.password}/>
+                                </FormControl>
 
-                    <FormControl mb='1rem'>
-                        <FormLabel fontSize='20px'>Password</FormLabel>
+                                <FormControl mb='1rem'>
+                                    <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
+                                    <Select value={currentUser.role}>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </Select>
+                                </FormControl>
+                            </>
 
-                        <Input type="password" value={currentUser.password} onChange={(e) => setPassword(e.target.value)}/>
+                    }
 
-                    </FormControl>
+                    {
+                        editing &&
+                        <>
+                            <FormControl mb='1rem'>
+                                <FormLabel fontSize='20px'>Password</FormLabel>
+                                <Input type="password" onChange={(e) => setCurrentUser({...currentUser, password: e.target.value})}
+                                       value={currentUser.password}/>
+                            </FormControl>
 
-                    <FormControl mb='1rem'>
-                        <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
-                        <Select value={currentUser.role} onChange={(e) => {
-                            setRole(e.target.value)
-                            console.log(e.target.value)
-                        }}>
-                            <option>Yes</option>
-                            <option>No</option>
-                        </Select>
-                    </FormControl>
+                            <FormControl mb='1rem'>
+                                <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
+                                <Select
+                                    onChange={(e) => {
+                                    setCurrentUser( currentUser=>  ({...currentUser, role: e.target.options[e.target.selectedIndex].value}))
+                                    console.log(e.target.options[e.target.selectedIndex].value)
+
+                                }}
+                                    value={currentUser.role}>
+                                    <option value={'Yes'}>Yes</option>
+                                    <option value={'No'}>No</option>
+                                </Select>
+                            </FormControl>
+                        </>
+
+                    }
+
+
+
+
+                    <Stack direction="column" spacing={7} align='center' pt='2rem'>
+                        <Button onClick={() => {setEditing(true)}} colorScheme='purple' size='lg' width='xs'>Edit Profile</Button>
+                    </Stack>
 
                     <Stack direction="column" spacing={7} align='center' pt='2rem'>
                         <Button colorScheme='purple' size='lg' width='xs'>Update Profile</Button>
                     </Stack>
-                    {/*<Stack direction="column" spacing={7} align='center' pt='2rem'>*/}
-                    {/*    <Button colorScheme='purple' size='lg' width='xs'>Your commented dogs</Button>*/}
-                    {/*</Stack>*/}
+
                 </Box>
-                {/*{*/}
-                {/*    // editing &&*/}
-                {/*    <div>*/}
-                {/*        <i onClick={() => {*/}
-                {/*            // deleteWidget(_widget)}*/}
-                {/*        } className="fas fa-trash float-right"></i>*/}
-                {/*        <i onClick={() => {*/}
-                {/*            // updateWidget(widget)*/}
-                {/*            // setEditing(false)*/}
-                {/*            // console.log("inside update: ", widget)*/}
-
-                {/*        }} className="fas fa-check float-right"></i>*/}
-
-                {/*     */}
-                {/*        <textarea*/}
-                {/*            // onChange={(e) => setWidget({...widget, text: e.target.value})}*/}
-                {/*            // value={widget.text}*/}
-                {/*            className="form-control"></textarea>*/}
-                {/*    </div>*/}
-                {/*}*/}
-                {/*{*/}
-                {/*    // !editing &&*/}
-                {/*    <div>*/}
-                {/*        <i onClick={() => {*/}
-                {/*            // setEditing(true)*/}
-
-                {/*        }} className="fas fa-cog float-right"></i>*/}
-                {/*        <p>*/}
-                {/*            /!*{_widget.text}*!/*/}
-                {/*            This is the dog you like*/}
-                {/*        </p>*/}
-                {/*    </div>*/}
-                {/*}*/}
 
                 <div className="table-responsive">
                     <table className="table text-nowrap">

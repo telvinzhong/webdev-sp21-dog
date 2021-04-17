@@ -14,7 +14,7 @@ const NavBar = () => {
     }, [statusCode])
 
 
-    console.log('current user in navbar:', currentUser)
+    // console.log('current user in navbar:', currentUser)
     return(
         <div>
         {/*Current User: {JSON.stringify(currentUser)},*/}
@@ -34,10 +34,7 @@ const NavBar = () => {
                 <Nav.Link href="/register">Register</Nav.Link>
             </Nav>
 
-            {/*<Form inline>*/}
-            {/*    <FormControl type="text" placeholder="Search" className="mr-sm-2" />*/}
-            {/*    <Button variant="outline-info">Search</Button>*/}
-            {/*</Form>*/}
+
         </Navbar>
         </div>
     )
