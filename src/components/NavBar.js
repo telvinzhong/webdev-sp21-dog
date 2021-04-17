@@ -12,13 +12,7 @@ const NavBar = () => {
                 setCurrentUser(currentUser)
             })
     }, [statusCode])
-    const logout = () =>{
-        userService.logout()
-            .then((statusCode) => {
 
-                setStatusCode(statusCode)
-            })
-    }
 
     console.log('current user in navbar:', currentUser)
     return(

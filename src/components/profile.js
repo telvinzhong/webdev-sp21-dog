@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import NavBar from "./NavBar";
+import userService from "../services/user-service";
 import {
     Box,
     FormControl,
@@ -14,7 +15,15 @@ import {
 const Profile = () => {
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
-    useEffect(() => {}, [password, role])
+    const [currentUser, setCurrentUser] = useState({})
+    const [statusCode, setStatusCode] = useState('')
+    useEffect(() => {
+        userService.profile()
+            .then((currentUser) => {
+                setCurrentUser(currentUser)
+            })
+    }, [statusCode])
+    // console.log('currentuser in profile', currentUser.userName)
     return(
         <div>
             <NavBar/>
@@ -23,20 +32,23 @@ const Profile = () => {
                 <Box p="4" borderRadius='lg' width='lg'>
                     <FormControl mb='1rem'>
                         <FormLabel fontSize='20px'>Username</FormLabel>
-                        <Input type="text" value="Your Username"/>
+                        <Input type="text" value={currentUser.userName}/>
                         {/*<Input/>*/}
                     </FormControl>
 
                     <FormControl mb='1rem'>
                         <FormLabel fontSize='20px'>Password</FormLabel>
 
-                        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <Input type="password" value={currentUser.password} onChange={(e) => setPassword(e.target.value)}/>
 
                     </FormControl>
 
                     <FormControl mb='1rem'>
                         <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
-                        <Select value={role} onChange={(e) => setRole(e.target.value)}>
+                        <Select value={currentUser.role} onChange={(e) => {
+                            setRole(e.target.value)
+                            console.log(e.target.value)
+                        }}>
                             <option>Yes</option>
                             <option>No</option>
                         </Select>
