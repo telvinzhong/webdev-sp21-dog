@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Login from './components/login'
 import SignUp from "./components/register";
 import Profile from "./components/profile";
+import Logout from "./components/logout";
 import InvalidProfile from "./components/invalidProfile";
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -22,6 +23,11 @@ function App() {
                         exact={true}
                         path={["/login"]}>
                         <Login/>
+                    </Route>
+                    <Route
+                        exact={true}
+                        path={["/logout"]}>
+                        <Logout/>
                     </Route>
                     <Route
                         exact={true}
