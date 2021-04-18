@@ -72,16 +72,26 @@ const Login = () => {
     const handleClick = () => setShow(!show)
     const [credentials, setCredentials] = useState({userName: '', password: ''})
     const history = useHistory()
+    const toast = useToast()
     const login = () => {
         userService.login(credentials)
             .then((user) => {
+                console.log("xiao2")
+                console.log(user)
                 if(user === 0) {
-                    alert("login failed, try again")
-                // } else {
-                //     history.push("/profile")
+                    toast({
+                        title: "Login failed",
+                        description: "Please check username and password",
+                        status: "error",
+                        duration: 3000,
+                        isClosable: true
+                    });
+                }
+                else {
+                    history.push("/profile")
                 }
             })
-        history.push("/profile")
+
     }
 
     return (
