@@ -77,8 +77,8 @@ const Login = () => {
             .then((user) => {
                 if(user === 0) {
                     alert("login failed, try again")
-                } else {
-                    history.push("/profile")
+                // } else {
+                //     history.push("/profile")
                 }
             })
         history.push("/profile")

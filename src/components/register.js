@@ -104,8 +104,8 @@ const SignUp = () => {
                 console.log(user)
                 if(user === 0) {
                     alert("username already taken")
-                } else {
-                    history.push("/profile")
+                // } else {
+                //     history.push("/profile")
                 }
             })
     }
