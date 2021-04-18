@@ -7,6 +7,16 @@ const profile = () => {
     }).then(response => response.json())
 }
 
+const updateProfile = (currentUser)=>{
+    return fetch(`${USER_API}/profile`, {
+        method: "PUT",
+        body: JSON.stringify(currentUser),
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+}
 
 const login = (credentials) => {
     return fetch(`${USER_API}/login`, {
@@ -41,5 +51,5 @@ const signup = (credentials) => {
 
 
 export default {
-    signup, login, logout, profile
+    signup, login, logout, profile, updateProfile
 }

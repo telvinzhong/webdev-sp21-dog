@@ -25,7 +25,19 @@ const Profile = () => {
             })
     }, [statusCode])
 
+
     console.log('currentuser in profile:', currentUser)
+
+    const updateprofile =(currentUser)=>{
+        console.log('currentuser inside of updateprofile:', currentUser)
+        userService.updateProfile(currentUser)
+
+            .then((currentUser) => {
+                setCurrentUser(currentUser)
+
+            })
+    }
+
     return(
         <div>
             <NavBar/>
@@ -51,9 +63,20 @@ const Profile = () => {
                                         <option>No</option>
                                     </Select>
                                 </FormControl>
+
+                                <Stack direction="column" spacing={7} align='center' pt='2rem'>
+                                    <Button onClick={() => {
+
+                                        setEditing(true)
+                                        console.log('editing in edit profile', editing)
+                                    }} colorScheme='purple' size='lg' width='xs'>Edit Profile</Button>
+                                </Stack>
+
+
                             </>
 
                     }
+
 
                     {
                         editing &&
@@ -68,29 +91,28 @@ const Profile = () => {
                                 <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
                                 <Select
                                     onChange={(e) => {
-                                    setCurrentUser( currentUser=>  ({...currentUser, role: e.target.options[e.target.selectedIndex].value}))
-                                    console.log(e.target.options[e.target.selectedIndex].value)
+                                        setCurrentUser( currentUser=>  ({...currentUser, role: e.target.options[e.target.selectedIndex].value}))
+                                        console.log(e.target.options[e.target.selectedIndex].value)
 
-                                }}
+                                    }}
                                     value={currentUser.role}>
                                     <option value={'Yes'}>Yes</option>
                                     <option value={'No'}>No</option>
                                 </Select>
                             </FormControl>
+                            <Stack direction="column" spacing={7} align='center' pt='2rem'>
+                                <Button onClick={() => {
+                                    updateprofile(currentUser)
+                                    setEditing(false)
+                                    console.log('editing in update profile', editing)
+                                }} colorScheme='purple' size='lg' width='xs'>Update Profile</Button>
+                            </Stack>
+
+
                         </>
 
                     }
 
-
-
-
-                    <Stack direction="column" spacing={7} align='center' pt='2rem'>
-                        <Button onClick={() => {setEditing(true)}} colorScheme='purple' size='lg' width='xs'>Edit Profile</Button>
-                    </Stack>
-
-                    <Stack direction="column" spacing={7} align='center' pt='2rem'>
-                        <Button colorScheme='purple' size='lg' width='xs'>Update Profile</Button>
-                    </Stack>
 
                 </Box>
 
