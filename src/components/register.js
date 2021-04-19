@@ -110,6 +110,16 @@ const SignUp = () => {
             });
             return;
         }
+        if (credentials.password.length < 3) {
+            toast({
+                title: "Sign up failed",
+                description: "Password at least 3 digits",
+                status: "error",
+                duration: 3000,
+                isClosable: true
+            });
+            return;
+        }
 
             userService.signup(credentials)
                 .then((user) => {

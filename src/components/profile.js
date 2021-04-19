@@ -39,6 +39,16 @@ const Profile = () => {
             });
             return;
         }
+        if (currentUser.password.length < 3) {
+            toast({
+                title: "Sign up failed",
+                description: "Password at least 3 digits",
+                status: "error",
+                duration: 3000,
+                isClosable: true
+            });
+            return;
+        }
 
         console.log('currentuser inside of updateprofile:', currentUser)
         userService.updateProfile(currentUser)
