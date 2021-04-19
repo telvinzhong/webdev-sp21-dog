@@ -9,15 +9,15 @@ import {
     Button,
     Stack,
     Text,
-    VStack, Select
+    VStack, Select,
+    useToast
 } from "@chakra-ui/react";
 
 const Profile = () => {
-    const [password, setPassword] = useState('');
-    const [role, setRole] = useState('');
-    const [editing, setEditing] = useState(false)
-    const [currentUser, setCurrentUser] = useState({})
-    const [statusCode, setStatusCode] = useState('')
+    const toast = useToast()
+    const [editing, setEditing] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
+    const [statusCode, setStatusCode] = useState('');
     useEffect(() => {
         userService.profile()
             .then((currentUser) => {
@@ -29,6 +29,17 @@ const Profile = () => {
     console.log('currentuser in profile:', currentUser)
 
     const updateprofile =(currentUser)=>{
+        if (!(currentUser.userName && currentUser.password )) {
+            toast({
+                title: "Update profile failed",
+                description: "All fields are required",
+                status: "error",
+                duration: 3000,
+                isClosable: true
+            });
+            return;
+        }
+
         console.log('currentuser inside of updateprofile:', currentUser)
         userService.updateProfile(currentUser)
 
