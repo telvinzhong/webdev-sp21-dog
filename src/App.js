@@ -6,7 +6,6 @@ import Login from './components/login'
 import SignUp from "./components/register";
 import Profile from "./components/profile";
 import Logout from "./components/logout";
-import InvalidProfile from "./components/invalidProfile";
 import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
@@ -34,16 +33,7 @@ function App() {
                         path={["/profile"]}>
                         <Profile/>
                     </Route>
-                    {/*<Route*/}
-                    {/*    exact={true}*/}
-                    {/*    path={["/profile/:userId"]}>*/}
-                    {/*    <Profile/>*/}
-                    {/*</Route>*/}
-                    {/*<Route*/}
-                    {/*    exact={true}*/}
-                    {/*    path={["/profile"]}>*/}
-                    {/*    <InvalidProfile/>*/}
-                    {/*</Route>*/}
+
                     <Route
                         exact={true}
                         path={["/register"]}>
