@@ -33,7 +33,11 @@ function App() {
                         path={["/profile"]}>
                         <Profile/>
                     </Route>
-
+                    <Route
+                        exact={true}
+                        path={["/profile/:userName"]}>
+                        <Profile/>
+                    </Route>
                     <Route
                         exact={true}
                         path={["/register"]}>

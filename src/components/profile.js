@@ -12,20 +12,44 @@ import {
     VStack, Select,
     useToast
 } from "@chakra-ui/react";
+import {useParams} from "react-router-dom";
 
 const Profile = () => {
+    const {userName} = useParams()
     const toast = useToast()
     const [editing, setEditing] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
     const [statusCode, setStatusCode] = useState('');
+    const [otherUser, setOtherUser] = useState({});
     useEffect(() => {
-        userService.profile()
-            .then((currentUser) => {
-                setCurrentUser(currentUser)
-            })
+        if(userName){
+            userService.otherProfile(userName)
+                .then((otherUser) => {
+                    console.log("otheruser is:", otherUser)
+                    setOtherUser(otherUser)
+                })
+        } else{
+            userService.profile()
+                .then((currentUser) => {
+                    setCurrentUser(currentUser)
+                })
+        }
     }, [statusCode])
+    // useEffect(() => {
+    //     userService.profile()
+    //         .then((currentUser) => {
+    //             setCurrentUser(currentUser)
+    //         })
+    //     if(userName) {
+    //         userService.otherProfile(userName)
+    //             .then((otherUser) => {
+    //                 setOtherUser(otherUser)
+    //             })
+    //     }
+    // }, [statusCode])
 
 
+    console.log('username is:', userName)
     console.log('currentuser in profile:', currentUser)
 
     const updateprofile =(currentUser)=>{
@@ -65,13 +89,51 @@ const Profile = () => {
             <VStack>
                 <Text fontSize='70px' color='purple' as='ariel'>Profile</Text>
                 <Box p="4" borderRadius='lg' width='lg'>
-                    <FormControl mb='1rem'>
-                        <FormLabel fontSize='20px'>Username</FormLabel>
-                        <Input type="text" value={currentUser.userName}/>
-                    </FormControl>
+
+
                     {
-                        !editing &&
+                        userName &&
+                        <>
+                            <FormControl mb='1rem'>
+                                <FormLabel fontSize='20px'>Username</FormLabel>
+                                <Input type="text" value={otherUser.userName}/>
+                            </FormControl>
+
+                            <FormControl mb='1rem'>
+                                <FormLabel fontSize='20px'>Password</FormLabel>
+                                <Input type="password" value={otherUser.password}/>
+                            </FormControl>
+
+                            <FormControl mb='1rem'>
+                                <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
+                                <Select value={otherUser.role}>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </Select>
+                            </FormControl>
+
+                            {/*<Stack direction="column" spacing={7} align='center' pt='2rem'>*/}
+                            {/*    <Button onClick={() => {*/}
+
+                            {/*        setEditing(true)*/}
+                            {/*        console.log('editing in edit profile', editing)*/}
+                            {/*    }} colorScheme='purple' size='lg' width='xs'>Edit Profile</Button>*/}
+                            {/*</Stack>*/}
+
+
+                        </>
+
+                    }
+
+
+                    {
+                        !editing && !userName &&
                             <>
+                                <FormControl mb='1rem'>
+                                    <FormLabel fontSize='20px'>Username</FormLabel>
+                                    <Input type="text" value={currentUser.userName}/>
+                                </FormControl>
+
                                 <FormControl mb='1rem'>
                                     <FormLabel fontSize='20px'>Password</FormLabel>
                                     <Input type="password" value={currentUser.password}/>
@@ -100,8 +162,13 @@ const Profile = () => {
 
 
                     {
-                        editing &&
+                        editing && !userName &&
                         <>
+                            <FormControl mb='1rem'>
+                                <FormLabel fontSize='20px'>Username</FormLabel>
+                                <Input type="text" value={currentUser.userName}/>
+                            </FormControl>
+
                             <FormControl mb='1rem'>
                                 <FormLabel fontSize='20px'>Password</FormLabel>
                                 <Input type="password" onChange={(e) => setCurrentUser({...currentUser, password: e.target.value})}

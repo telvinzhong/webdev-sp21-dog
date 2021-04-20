@@ -7,6 +7,15 @@ const profile = () => {
     }).then(response => response.json())
 }
 
+const otherProfile = (userName) => {
+    console.log('userName inside the service:', userName)
+    return fetch(`${USER_API}/profile/${userName}`, {
+        method: "GET"
+    }).then(response => response.json())
+}
+
+
+
 const updateProfile = (currentUser)=>{
     return fetch(`${USER_API}/profile`, {
         method: "PUT",
@@ -51,5 +60,5 @@ const signup = (credentials) => {
 
 
 export default {
-    signup, login, logout, profile, updateProfile
+    signup, login, logout, profile, updateProfile, otherProfile
 }
