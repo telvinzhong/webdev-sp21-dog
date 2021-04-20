@@ -35,18 +35,6 @@ const Profile = () => {
                 })
         }
     }, [statusCode])
-    // useEffect(() => {
-    //     userService.profile()
-    //         .then((currentUser) => {
-    //             setCurrentUser(currentUser)
-    //         })
-    //     if(userName) {
-    //         userService.otherProfile(userName)
-    //             .then((otherUser) => {
-    //                 setOtherUser(otherUser)
-    //             })
-    //     }
-    // }, [statusCode])
 
 
     console.log('username is:', userName)
@@ -99,10 +87,10 @@ const Profile = () => {
                                 <Input type="text" value={otherUser.userName}/>
                             </FormControl>
 
-                            <FormControl mb='1rem'>
-                                <FormLabel fontSize='20px'>Password</FormLabel>
-                                <Input type="password" value={otherUser.password}/>
-                            </FormControl>
+                            {/*<FormControl mb='1rem'>*/}
+                            {/*    <FormLabel fontSize='20px'>Password</FormLabel>*/}
+                            {/*    <Input type="password" value={otherUser.password}/>*/}
+                            {/*</FormControl>*/}
 
                             <FormControl mb='1rem'>
                                 <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
@@ -112,13 +100,7 @@ const Profile = () => {
                                 </Select>
                             </FormControl>
 
-                            {/*<Stack direction="column" spacing={7} align='center' pt='2rem'>*/}
-                            {/*    <Button onClick={() => {*/}
 
-                            {/*        setEditing(true)*/}
-                            {/*        console.log('editing in edit profile', editing)*/}
-                            {/*    }} colorScheme='purple' size='lg' width='xs'>Edit Profile</Button>*/}
-                            {/*</Stack>*/}
 
 
                         </>
