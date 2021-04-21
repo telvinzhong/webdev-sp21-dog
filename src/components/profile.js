@@ -9,26 +9,59 @@ import {
     Button,
     Stack,
     Text,
-    VStack, Select
+    VStack, Select,
+    useToast
 } from "@chakra-ui/react";
+import {useParams} from "react-router-dom";
 
 const Profile = () => {
-    const [password, setPassword] = useState('');
-    const [role, setRole] = useState('');
-    const [editing, setEditing] = useState(false)
-    const [currentUser, setCurrentUser] = useState({})
-    const [statusCode, setStatusCode] = useState('')
+    const {userName} = useParams()
+    const toast = useToast()
+    const [editing, setEditing] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
+    const [statusCode, setStatusCode] = useState('');
+    const [otherUser, setOtherUser] = useState({});
     useEffect(() => {
-        userService.profile()
-            .then((currentUser) => {
-                setCurrentUser(currentUser)
-            })
+        if(userName){
+            userService.otherProfile(userName)
+                .then((otherUser) => {
+                    console.log("otheruser is:", otherUser)
+                    setOtherUser(otherUser)
+                })
+        } else{
+            userService.profile()
+                .then((currentUser) => {
+                    setCurrentUser(currentUser)
+                })
+        }
     }, [statusCode])
 
 
+    console.log('username is:', userName)
     console.log('currentuser in profile:', currentUser)
 
     const updateprofile =(currentUser)=>{
+        if (!(currentUser.userName && currentUser.password )) {
+            toast({
+                title: "Update profile failed",
+                description: "All fields are required",
+                status: "error",
+                duration: 3000,
+                isClosable: true
+            });
+            return;
+        }
+        if (currentUser.password.length < 3) {
+            toast({
+                title: "Sign up failed",
+                description: "Password at least 3 digits",
+                status: "error",
+                duration: 3000,
+                isClosable: true
+            });
+            return;
+        }
+
         console.log('currentuser inside of updateprofile:', currentUser)
         userService.updateProfile(currentUser)
 
@@ -44,13 +77,45 @@ const Profile = () => {
             <VStack>
                 <Text fontSize='70px' color='purple' as='ariel'>Profile</Text>
                 <Box p="4" borderRadius='lg' width='lg'>
-                    <FormControl mb='1rem'>
-                        <FormLabel fontSize='20px'>Username</FormLabel>
-                        <Input type="text" value={currentUser.userName}/>
-                    </FormControl>
+
+
                     {
-                        !editing &&
+                        userName &&
+                        <>
+                            <FormControl mb='1rem'>
+                                <FormLabel fontSize='20px'>Username</FormLabel>
+                                <Input type="text" value={otherUser.userName}/>
+                            </FormControl>
+
+                            {/*<FormControl mb='1rem'>*/}
+                            {/*    <FormLabel fontSize='20px'>Password</FormLabel>*/}
+                            {/*    <Input type="password" value={otherUser.password}/>*/}
+                            {/*</FormControl>*/}
+
+                            <FormControl mb='1rem'>
+                                <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
+                                <Select value={otherUser.role}>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </Select>
+                            </FormControl>
+
+
+
+
+                        </>
+
+                    }
+
+
+                    {
+                        !editing && !userName &&
                             <>
+                                <FormControl mb='1rem'>
+                                    <FormLabel fontSize='20px'>Username</FormLabel>
+                                    <Input type="text" value={currentUser.userName}/>
+                                </FormControl>
+
                                 <FormControl mb='1rem'>
                                     <FormLabel fontSize='20px'>Password</FormLabel>
                                     <Input type="password" value={currentUser.password}/>
@@ -79,8 +144,13 @@ const Profile = () => {
 
 
                     {
-                        editing &&
+                        editing && !userName &&
                         <>
+                            <FormControl mb='1rem'>
+                                <FormLabel fontSize='20px'>Username</FormLabel>
+                                <Input type="text" value={currentUser.userName}/>
+                            </FormControl>
+
                             <FormControl mb='1rem'>
                                 <FormLabel fontSize='20px'>Password</FormLabel>
                                 <Input type="password" onChange={(e) => setCurrentUser({...currentUser, password: e.target.value})}

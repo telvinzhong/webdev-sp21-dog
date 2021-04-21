@@ -96,18 +96,56 @@ import NavBar from "./NavBar";
 
 const SignUp = () => {
 
-    const [credentials, setCredentials] = useState({userName: '', password: '', role: ''}) 
+    const [credentials, setCredentials] = useState({userName: '', password: '', role: ''})
     const history = useHistory()
+    const toast = useToast()
     const signup = () => {
-        userService.signup(credentials)
-            .then((user) => {
-                console.log(user)
-                if(user === 0) {
-                    alert("username already taken")
-                } else {
-                    history.push("/profile")
-                }
-            })
+        if (!(credentials.userName && credentials.password )) {
+            toast({
+                title: "Sign up failed",
+                description: "Please complete all required fields",
+                status: "error",
+                duration: 3000,
+                isClosable: true
+            });
+            return;
+        }
+        if (credentials.password.length < 3) {
+            toast({
+                title: "Sign up failed",
+                description: "Password at least 3 digits",
+                status: "error",
+                duration: 3000,
+                isClosable: true
+            });
+            return;
+        }
+
+            userService.signup(credentials)
+                .then((user) => {
+                    if (user !== 0) {
+                        toast({
+                            title: "Sign up successful",
+                            description: "try login",
+                            status: "success",
+                            duration: 3000,
+                            isClosable: true
+                        });
+                        // history.push("/profile")
+                    }
+                    else {
+                        toast({
+                            title: "Sign up failed",
+                            description: "username already taken",
+                            status: "error",
+                            duration: 3000,
+                            isClosable: true
+                        });
+                    }
+                })
+
+
+
     }
 
     // const [userName, setUserName] = useState('');
