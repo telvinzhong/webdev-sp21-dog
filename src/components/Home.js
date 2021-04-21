@@ -28,9 +28,11 @@ import {Link} from "react-router-dom";
 import { Button, Navbar, Nav, Image } from 'react-bootstrap'
 import { Picture } from 'react-responsive-picture';
 import NavBar from "./NavBar";
+import CommentServerTesting from './comment-server-testing'
 const Home = () => {
     return(
         <div>
+            <CommentServerTesting/>
             {/*<Navbar bg="dark" variant="dark">*/}
             {/*    <Navbar.Brand href="#home">Pocket Dog</Navbar.Brand>*/}
             {/*    <Nav className="mr-auto">*/}
