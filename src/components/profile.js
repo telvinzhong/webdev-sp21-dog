@@ -87,11 +87,6 @@ const Profile = () => {
                                 <Input type="text" value={otherUser.userName}/>
                             </FormControl>
 
-                            {/*<FormControl mb='1rem'>*/}
-                            {/*    <FormLabel fontSize='20px'>Password</FormLabel>*/}
-                            {/*    <Input type="password" value={otherUser.password}/>*/}
-                            {/*</FormControl>*/}
-
                             <FormControl mb='1rem'>
                                 <FormLabel fontSize='20px'>I currently have a dog</FormLabel>
                                 <Select value={otherUser.role}>
