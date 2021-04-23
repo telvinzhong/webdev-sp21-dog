@@ -1,4 +1,5 @@
-const USER_API = "http://localhost:4001/api/users";
+// const USER_API = "http://localhost:4001/api/users";
+const USER_API = "https://dog-nodejs-server.herokuapp.com/api/users";
 
 const profile = () => {
     return fetch(`${USER_API}/profile`, {
@@ -6,6 +7,7 @@ const profile = () => {
         credentials: "include"
     }).then(response => response.json())
 }
+
 
 const otherProfile = (userName) => {
     console.log('userName inside the service:', userName)

@@ -1,4 +1,5 @@
-const COMMENTS_URL = "http://localhost:4001/api";
+// const COMMENTS_URL = "http://localhost:4001/api";
+const COMMENTS_URL = "https://dog-nodejs-server.herokuapp.com/api";
 
 export const createComment = (dogId, commentObj) =>
     fetch(`${COMMENTS_URL}/dogs/${dogId}/comments`, {
