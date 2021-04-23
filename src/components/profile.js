@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import NavBar from "./NavBar";
 import userService from "../services/user-service";
+import commentService from "../services/comment-service";
+import CommentRowProfile from "./commentRow-profile";
 import {
     Box,
     FormControl,
@@ -21,24 +23,36 @@ const Profile = () => {
     const [currentUser, setCurrentUser] = useState({});
     const [statusCode, setStatusCode] = useState('');
     const [otherUser, setOtherUser] = useState({});
+    const [comments, setComments] = useState([]);
     useEffect(() => {
         if(userName){
             userService.otherProfile(userName)
                 .then((otherUser) => {
                     console.log("otheruser is:", otherUser)
                     setOtherUser(otherUser)
+                    commentService.findCommentsByUserName(otherUser.userName)
+                        .then(comments => {
+                                console.log(comments)
+                                setComments(comments)
+                            }
+                        )
                 })
         } else{
             userService.profile()
-                .then((currentUser) => {
-                    setCurrentUser(currentUser)
+                .then((current) => {
+                    setCurrentUser(current)
+                    commentService.findCommentsByUserName(current.userName)
+                        .then(comments => {
+                                setComments(comments)
+                            }
+                        )
                 })
         }
+
     }, [statusCode])
 
-
-    console.log('username is:', userName)
-    console.log('currentuser in profile:', currentUser)
+    // console.log('username is:', userName)
+    // console.log('currentuser in profile:', currentUser)
 
     const updateprofile =(currentUser)=>{
         if (!(currentUser.userName && currentUser.password )) {
@@ -94,9 +108,6 @@ const Profile = () => {
                                     <option>No</option>
                                 </Select>
                             </FormControl>
-
-
-
 
                         </>
 
@@ -185,32 +196,22 @@ const Profile = () => {
                     <table className="table text-nowrap">
                         <thead>
                         <tr>
-                            <th>Dog Name</th>
+                            <th>Dog Id</th>
                             <th>Comments</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Husky</td>
-                            <td><textarea>Good dog.</textarea></td>
-                            <i onClick={() => {
-                                // setEditing(true)
-                            }} className="fas fa-cog"></i>
-                        </tr>
-                        <tr>
-                            <td>Akbash Dog</td>
-                            <td><textarea>I like it!</textarea></td>
-                            <i onClick={() => {
-                                // setEditing(true)
-                            }} className="fas fa-cog"></i>
-                        </tr>
-                        <tr>
-                            <td>American Bulldog</td>
-                            <td><textarea>Tell me more.</textarea></td>
-                            <i onClick={() => {
-                                // setEditing(true)
-                            }} className="fas fa-cog"></i>
-                        </tr>
+                            {
+                                comments.map((comment)=>
+
+                                    <CommentRowProfile
+                                        // editing={editingWidget.id === widget.id}
+                                        comment={comment}
+                                        userName = {userName}
+                                    />
+                                )
+
+                            }
 
                         </tbody>
                     </table>
