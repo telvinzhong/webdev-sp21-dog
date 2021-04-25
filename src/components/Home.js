@@ -30,6 +30,7 @@ const Home = () => {
                                 <br/>
                                 <br/>
                                 <br/>
+                                <br/>
                                 {/*    for both existing and potential dog owners to learn about and trade pictures of dogs</h1>*/}
                                 <Text fontSize='35px' fontWeight='bold' color='white' as='em'>The goal of this project is to create an online dog community
                                     for both existing and potential dog owners to discover, share, and discuss all things dog related.
