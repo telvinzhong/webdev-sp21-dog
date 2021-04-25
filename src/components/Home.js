@@ -14,7 +14,7 @@ const Home = () => {
             <div className="card"
                  // style={{backgroundImage: `url("https://static9.depositphotos.com/1022647/1081/v/600/depositphotos_10813712-stock-illustration-background-animal-footprints.jpg")`}}>
                  // style={{backgroundImage: `url("https://cdn.sandbergwallpaper.com/wp-content/uploads/2020/11/237-21_1.jpg")`,height: '100vh'}}
-                 style={{backgroundImage: `url("https://cdn.sandbergwallpaper.com/wp-content/uploads/2020/11/237-21_1.jpg")`}}>
+                 style={{backgroundImage: `url("https://cdn.sandbergwallpaper.com/wp-content/uploads/2020/11/237-21_1.jpg")`,height: '100vh'}}>
                 <div className="row g-0">
                     {/*<div className="col-md-4 mt-5 mr-4 mr-sm-4 mr-md-0 pl-5">*/}
                     <div className="col-md-4 mt-5 mr-4 mr-sm-4 mr-md-0 pl-5">
