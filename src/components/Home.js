@@ -14,7 +14,7 @@ const Home = () => {
             <div className="card"
                  // style={{backgroundImage: `url("https://static9.depositphotos.com/1022647/1081/v/600/depositphotos_10813712-stock-illustration-background-animal-footprints.jpg")`}}>
                  // style={{backgroundImage: `url("https://cdn.sandbergwallpaper.com/wp-content/uploads/2020/11/237-21_1.jpg")`,height: '100vh'}}
-                 style={{backgroundImage: `url("https://cdn.sandbergwallpaper.com/wp-content/uploads/2020/11/237-21_1.jpg")`,height: '100vh'}}>
+                 style={{backgroundImage: `url("https://cdn.sandbergwallpaper.com/wp-content/uploads/2020/11/237-21_1.jpg")`}}>
                 <div className="row g-0">
                     {/*<div className="col-md-4 mt-5 mr-4 mr-sm-4 mr-md-0 pl-5">*/}
                     <div className="col-md-4 mt-5 mr-4 mr-sm-4 mr-md-0 pl-5">
@@ -27,10 +27,6 @@ const Home = () => {
 
                             <div className="card-title">
                                 {/*<h1 className="card-title h1">Hi! Welcome! Our mission is to create centralized online dog community*/}
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
                                 {/*    for both existing and potential dog owners to learn about and trade pictures of dogs</h1>*/}
                                 <Text fontSize='35px' fontWeight='bold' color='white' as='em'>The goal of this project is to create an online dog community
                                     for both existing and potential dog owners to discover, share, and discuss all things dog related.
