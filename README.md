@@ -1,4 +1,6 @@
-The goal of this project is to create a online dog community for both existing and potential dog owners to learn about pictures of dogs.
+PocketDog
+
+The goal of this project is to create an online dog community for both existing and potential dog owners to discover, share, and discuss all things dog related. Users can find information on dog breeds such as size and temperament, create and login with authenticated accounts, and interact with one another by leaving comments on the pages of their favorite dogs. 
 
 You can find more details below:
 
