@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import CommentRowDetail from "./commentRow-detail";
 import userService from "../services/user-service";
 import {Input} from "@chakra-ui/react";
+import CommentRowProfile from "./commentRow-profile";
 
 const Details = () => {
     const [dog, setDog] = useState([])
@@ -124,32 +125,54 @@ const Details = () => {
             </div>
 
             <br/>
-            <div className="row">
-                <div className="col-1">
-                    Users
-                </div>
-                <div className="col-11">
-                    Comments
-                </div>
-            </div>
+            {/*<div className="row">*/}
+            {/*    <div className="col-1">*/}
+            {/*        Users*/}
+            {/*    </div>*/}
+            {/*    <div className="col-11">*/}
+            {/*        Comments*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
-            <div>
-                <ul className="list-group">
+            {/*<div>*/}
+            {/*    <ul className="list-group">*/}
+            {/*        {*/}
+            {/*            comments.map(comment =>*/}
+            {/*                <li key={comment._id} className="list-group-item">*/}
+
+
+            {/*                    <CommentRowDetail*/}
+            {/*                        {...comment}/>*/}
+
+
+            {/*                </li>*/}
+            {/*            )*/}
+            {/*        }*/}
+            {/*    </ul>*/}
+            {/*</div>*/}
+            <div className="table-responsive">
+                <table className="table text-nowrap">
+                    <thead>
+                    <tr>
+                        <th>UserName</th>
+                        <th>Comments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {
-                        comments.map(comment =>
-                            <li key={comment._id} className="list-group-item">
+                        comments.map((comment)=>
 
-
-                                <CommentRowDetail
-                                    {...comment}/>
-
-
-                            </li>
+                            <CommentRowDetail
+                                {...comment}
+                            />
                         )
+
                     }
-                </ul>
+
+                    </tbody>
+                </table>
             </div>
-            <br/>
+
             <form>
                 <div className="form-group">
                     <label htmlFor="comment">Leave your comment</label>
