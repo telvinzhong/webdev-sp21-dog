@@ -6,4 +6,4 @@ The goal of this project is to create an online dog community for both existing 
 
 You can find more details below:
 
-https://docs.google.com/document/d/1bTJYk5uzU5H_K_M4XAJS84Dz-S17RkFz5bvX4BTeNQc/edit
+https://docs.google.com/document/d/1bTJYk5uzU5H_K_M4XAJS84Dz-S17RkFz5bvX4BTeNQc/edit?usp=sharing
